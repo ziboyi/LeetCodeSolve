@@ -128,5 +128,5 @@ if __name__ == '__main__':
     # result = Solution().isMatch("aa", "a")
     # result = Solution().firstMissingPositive([7,8,9,11,12])
     # result = Solution().findMedianSortedArrays([1,2,5], [3,4,5])
-    result = Solution().maxArea([1,1])
+    # result = Solution().maxArea([1,1])
     print(result)
