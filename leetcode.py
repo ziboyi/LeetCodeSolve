@@ -112,13 +112,15 @@ class Solution:
 
     # 11. 盛最多水的容器
     def maxArea(self, height: List[int]) -> int:
-        max_area = 0
-        for idx_i, i in enumerate(height):
-            for idx_j, j in enumerate(height[idx_i+1:]):
-                area = min([i, j]) * (idx_j + 1)
-                if area > max_area:
-                    max_area = area
-        return max_area
+        # 此方法时间复杂度为 O(n*n)，时间复杂度太高
+        # max_area = 0
+        # for idx_i, i in enumerate(height):
+        #     for idx_j, j in enumerate(height[idx_i+1:]):
+        #         area = min([i, j]) * (idx_j + 1)
+        #         if area > max_area:
+        #             max_area = area
+        # return max_area
+
 
 
 
@@ -128,5 +130,5 @@ if __name__ == '__main__':
     # result = Solution().isMatch("aa", "a")
     # result = Solution().firstMissingPositive([7,8,9,11,12])
     # result = Solution().findMedianSortedArrays([1,2,5], [3,4,5])
-    # result = Solution().maxArea([1,1])
+    result = Solution().maxArea([1,1])
     print(result)
