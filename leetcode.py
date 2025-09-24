@@ -112,7 +112,7 @@ class Solution:
 
     # 11. 盛最多水的容器
     def maxArea(self, height: List[int]) -> int:
-        # 此方法时间复杂度为 O(n*n)，时间复杂度太高
+        # 此方法时间复杂度为 O(n^2)，时间复杂度太高
         # max_area = 0
         # for idx_i, i in enumerate(height):
         #     for idx_j, j in enumerate(height[idx_i+1:]):
@@ -120,6 +120,22 @@ class Solution:
         #         if area > max_area:
         #             max_area = area
         # return max_area
+
+        # 在边缘设置双指针，向内移动对应数值更大的指针只会得到盛水更少的容器，
+        # 要得到盛更多水的容器，向内移动对应数值更小的指针即可。
+        pos1, pos2 = 0, len(height) - 1
+        max_area = 0
+        while pos1 < pos2:
+            area = min(height[pos1], height[pos2]) * (pos2 - pos1)
+            if area > max_area:
+                max_area = area
+            if height[pos1] < height[pos2]:
+                pos1 += 1
+            else:
+                pos2 -= 1
+        return max_area
+
+
 
 
 
@@ -130,5 +146,5 @@ if __name__ == '__main__':
     # result = Solution().isMatch("aa", "a")
     # result = Solution().firstMissingPositive([7,8,9,11,12])
     # result = Solution().findMedianSortedArrays([1,2,5], [3,4,5])
-    result = Solution().maxArea([1,1])
+    result = Solution().maxArea([1,8,6,2,5,4,8,3,7]) # [1,8,6,2,5,4,8,3,7]
     print(result)
