@@ -1,11 +1,9 @@
 from typing import List, Optional
 import re
+from utils import ListNode
+from decimal import Decimal
 
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+
 
 
 class Solution:
@@ -135,23 +133,25 @@ class Solution:
                 pos2 -= 1
         return max_area
 
-    # 166. 分数到小数
-    def fractionToDecimal(self, numerator: int, denominator: int) -> str:
-        sign = '-' if numerator * denominator < 0 else ''
-        integer_part = abs(int(numerator)) // abs(int(denominator))
-        if numerator % denominator == 0:
-            return ''.join([sign, str(integer_part)])
-        else:
+
+
+
+
+
 
 
 
 
 if __name__ == '__main__':
-    # result = Solution().compareVersion("1.0.1", "1")
-    # result = Solution().twoSum([2,7,11,15], 9)
-    # result = Solution().isMatch("aa", "a")
-    # result = Solution().firstMissingPositive([7,8,9,11,12])
-    # result = Solution().findMedianSortedArrays([1,2,5], [3,4,5])
-    # result = Solution().maxArea([1,8,6,2,5,4,8,3,7]) # [1,8,6,2,5,4,8,3,7]
-    result = Solution().fractionToDecimal(4, 2)
+    result = Solution().compareVersion("1.0.1", "1")
+    print(result)
+    result = Solution().twoSum([2,7,11,15], 9)
+    print(result)
+    result = Solution().isMatch("aa", "a")
+    print(result)
+    result = Solution().firstMissingPositive([7,8,9,11,12])
+    print(result)
+    result = Solution().findMedianSortedArrays([1,2,5], [3,4,5])
+    print(result)
+    result = Solution().maxArea([1,8,6,2,5,4,8,3,7]) # [1,8,6,2,5,4,8,3,7]
     print(result)
