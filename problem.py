@@ -133,25 +133,37 @@ class Solution:
                 pos2 -= 1
         return max_area
 
-
-
-
-
-
+    # 20. 有效的括号
+    def isValid(self, s: str) -> bool:
+        stack = []
+        for char in s:
+            if char in ['(', '{', '[']:
+                stack.append(char)
+            elif char in ['}', ')', ']']:
+                if len(stack) == 0:
+                    return False
+                elif stack[-1] == '(' and char == ')':
+                    stack = stack[:-1]
+                elif stack[-1] == '[' and char == ']':
+                    stack = stack[:-1]
+                elif stack[-1] == '{' and char == '}':
+                    stack = stack[:-1]
+                else:
+                    return False
+        if len(stack) == 0:
+            return True
+        else:
+            return False
 
 
 
 
 if __name__ == '__main__':
-    result = Solution().compareVersion("1.0.1", "1")
-    print(result)
-    result = Solution().twoSum([2,7,11,15], 9)
-    print(result)
-    result = Solution().isMatch("aa", "a")
-    print(result)
-    result = Solution().firstMissingPositive([7,8,9,11,12])
-    print(result)
-    result = Solution().findMedianSortedArrays([1,2,5], [3,4,5])
-    print(result)
-    result = Solution().maxArea([1,8,6,2,5,4,8,3,7]) # [1,8,6,2,5,4,8,3,7]
+    # result = Solution().compareVersion("1.0.1", "1")
+    # result = Solution().twoSum([2,7,11,15], 9)
+    # result = Solution().isMatch("aa", "a")
+    # result = Solution().firstMissingPositive([7,8,9,11,12])
+    # result = Solution().findMedianSortedArrays([1,2,5], [3,4,5])
+    # result = Solution().maxArea([1,8,6,2,5,4,8,3,7])
+    result = Solution().isValid("({")
     print(result)
