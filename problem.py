@@ -1,5 +1,8 @@
-from typing import List, Optional
+from typing import List, Optional, Tuple
 import re
+
+from networkx.algorithms.clique import enumerate_all_cliques
+
 from utils import ListNode
 from decimal import Decimal
 
@@ -156,6 +159,51 @@ class Solution:
             return False
 
 
+    def find_last_valid_pairs(self, s: str):
+        pos_start, pos_end = 0, 0
+        stack = []
+        for idx, char in enumerate(s):
+            if char == '(':
+                stack.append(idx)
+            elif char == ')' and len(stack) > 0:
+                pos_start = stack[-1]
+                pos_end = idx
+                stack = stack[:-1]
+        return pos_start, pos_end
+
+    def find_valid_pairs(self, s:str):
+        if len(s) == 0:
+            return []
+        valid_pairs = []
+        while True:
+            pos_start, pos_end = self.find_last_valid_pairs(s)
+            if pos_start == 0 and pos_end == 0:
+                break
+            else:
+                valid_pairs = [(pos_start, pos_end)] + valid_pairs
+                s = s[:pos_start]
+        new_valid_pairs = []
+        for idx, i in enumerate(valid_pairs):
+            if len(new_valid_pairs) == 0:
+                new_valid_pairs.append(i)
+                continue
+            if i[0] == new_valid_pairs[-1][1] + 1: #把相邻的pair首尾相接
+                new_valid_pairs[-1] = (new_valid_pairs[-1][0], i[1])
+            else:
+                new_valid_pairs.append(i)
+        return new_valid_pairs
+
+
+    # 32. 最长有效括号
+    def longestValidParentheses(self, s: str) -> int:
+        valid_pairs = self.find_valid_pairs(s)
+        print(valid_pairs)
+        max_length = 0
+        for i, j in valid_pairs:
+            if max_length < j - i + 1:
+                max_length = j - i + 1
+        return max_length
+
 
 
 if __name__ == '__main__':
@@ -165,5 +213,6 @@ if __name__ == '__main__':
     # result = Solution().firstMissingPositive([7,8,9,11,12])
     # result = Solution().findMedianSortedArrays([1,2,5], [3,4,5])
     # result = Solution().maxArea([1,8,6,2,5,4,8,3,7])
-    result = Solution().isValid("({")
+    # result = Solution().isValid("({")
+    result = Solution().longestValidParentheses(')()())')
     print(result)
