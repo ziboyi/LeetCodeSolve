@@ -91,8 +91,35 @@ class Solution:
                     ')'
                 ])
 
+    # 60. 排列序列
+    def getPermutation(self, n: int, k: int) -> str:
+        numbers_list = [str(i) for i in range(1, n+1)]
+        k = k - 1 # k从1开始排序，改成从0开始排序。
+        def factorial(n: int):
+            res = 1
+            for i in range(1, n + 1):
+                res *= i
+            return res
+
+        l = [] # 第i位是排第几的数字
+        while n > 1:
+            number = k // factorial(n-1)
+            l.append(number)
+            k = k % factorial(n - 1)
+            n -= 1
+
+        result = ''
+        for i in l:
+            result = result + numbers_list.pop(i)
+        result = result + numbers_list.pop()
+        return result
+
+
+
+
 
 
 if __name__ == "__main__":
-    result = Solution().fractionToDecimal(1, 2147483648)
+    # result = Solution().fractionToDecimal(1, 2147483648)
+    result = Solution().getPermutation(3, 1)
     print(result)
