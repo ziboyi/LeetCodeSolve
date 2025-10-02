@@ -1,11 +1,7 @@
 
 import numpy as np
 
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+
 
 # 分解因数，返回排序后的因数列表
 def find_factors(n: int) -> list[int]:

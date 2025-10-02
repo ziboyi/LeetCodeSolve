@@ -1,7 +1,5 @@
 from typing import List, Optional, Tuple
 import re
-from utils import ListNode
-
 
 class Solution:
     # 165.比较版本号
@@ -87,23 +85,7 @@ class Solution:
         else:
             return (nums[len_nums-2] + nums[len_nums-1]) / 2
 
-    # 23. 合并K个升序链表
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        l = []
-        for i in lists: # 循环读取链表并把数值加入到列表l中
-            p = i
-            while p:
-                l.append(p.val)
-                p = p.next
-        l = sorted(l)
-        if not l:
-            return None
-        node = ListNode(l[0])
-        p = node
-        for i in l[1:]:
-            p.next = ListNode(i)
-            p = p.next
-        return node
+
 
     # 11. 盛最多水的容器
     def maxArea(self, height: List[int]) -> int:
