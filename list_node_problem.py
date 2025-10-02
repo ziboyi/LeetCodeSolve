@@ -48,6 +48,35 @@ class Solution:
             p = p.next
         return l
 
+    # 25. K个一组翻转链表
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        l = []
+        p = head
+        while p != None:
+            l.append(p.val)
+            p = p.next
+
+        last_numbers = []
+        if len(l) % k != 0:
+            last_numbers = l[-(len(l) % k):]
+
+        reversed_l = []
+        group = []
+        for idx, i in enumerate(l):
+            group.append(i)
+            if len(group) % k == 0:
+                group.reverse()
+                reversed_l += group
+                group = []
+        reversed_l += last_numbers
+
+        head = ListNode()
+        p = head
+        for i in reversed_l:
+            p.next = ListNode(i)
+            p = p.next
+        head = head.next
+        return head
 
 
 
@@ -55,4 +84,5 @@ class Solution:
 
 
 if __name__ == '__main__':
-    pass
+    result = Solution().test([1,2,3,4,5], 3)
+    print(result)
