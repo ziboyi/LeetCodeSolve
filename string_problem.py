@@ -41,7 +41,7 @@ class Solution:
 
     # 76.最小覆盖子串
     def minWindow(self, s: str, t: str) -> str:
-        pass
+
 
 
 if __name__ == '__main__':
