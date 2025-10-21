@@ -39,7 +39,13 @@ class Solution:
         new_line_list[-1] = last_line
         return new_line_list
 
+    # 76.最小覆盖子串
+    def minWindow(self, s: str, t: str) -> str:
+        pass
+
+
 if __name__ == '__main__':
     words = ["This", "is", "an", "example", "of", "text", "justification."]
     result = Solution().fullJustify(words, maxWidth=16)
     for i in result: print(i)
+
