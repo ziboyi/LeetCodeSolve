@@ -102,6 +102,27 @@ class Solution:
 
         return max_length
 
+    # 5. 最长回文子串
+    def longestPalindrome(self, s: str) -> str:
+        def reverse_string(s):
+            return s[::-1]
+
+        def is_palindrome(s): # 判断是否是回文串
+            return True if reverse_string(s) == s else False
+
+        if len(s) == 1: return s
+
+        max_length = 1
+        longest_palindrome = s[0]
+        pos_start, pos_end = 0, 0
+        while pos_start < len(s):
+            for pos_end in range(pos_start + max_length, len(s) + 1):
+                if is_palindrome(s[pos_start:pos_end]):
+                    max_length = len(s[pos_start:pos_end]) if len(s[pos_start:pos_end]) > max_length else max_length
+                    longest_palindrome = s[pos_start:pos_end]
+            pos_start += 1
+        return longest_palindrome
+
 
 
 
@@ -116,6 +137,8 @@ if __name__ == '__main__':
     # result = Solution().minWindow("", "ABC")
     # print(result)
 
-    res = Solution().lengthOfLongestSubstring('a')
-    print(res)
+    # res = Solution().lengthOfLongestSubstring('a')
+    # print(res)
 
+    res = Solution().longestPalindrome('aba')
+    print(res)
