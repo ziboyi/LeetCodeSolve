@@ -82,6 +82,28 @@ class Solution:
 
         return min_window
 
+    # 3. 无重复字符的最长子串
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        def has_same_char(s: str): # 判断是否有重复字符
+            return True if len(s) != len(set(s)) else False
+
+        if len(s) == 0: return 0
+        if len(s) == 1: return 1
+
+        max_length = 1
+        pos_start, pos_end = 0, 0
+        while pos_start < len(s):
+            for pos_end in range(pos_start + max_length, len(s) + 1):
+                if not has_same_char(s[pos_start:pos_end]):
+                    max_length = len(s[pos_start:pos_end]) if len(s[pos_start:pos_end]) > max_length else max_length
+                else:
+                    break
+            pos_start += 1
+
+        return max_length
+
+
+
 
 
 if __name__ == '__main__':
@@ -89,8 +111,11 @@ if __name__ == '__main__':
     # result = Solution().fullJustify(words, maxWidth=16)
     # for i in result: print(i)
 
-    result = Solution().minWindow("ADOBECODEBANC", "ABC")
-    result = Solution().minWindow("a", "a")
-    result = Solution().minWindow("", "ABC")
-    print(result)
+    # result = Solution().minWindow("ADOBECODEBANC", "ABC")
+    # result = Solution().minWindow("a", "a")
+    # result = Solution().minWindow("", "ABC")
+    # print(result)
+
+    res = Solution().lengthOfLongestSubstring('a')
+    print(res)
 
