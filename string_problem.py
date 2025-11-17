@@ -123,6 +123,26 @@ class Solution:
             pos_start += 1
         return longest_palindrome
 
+    # 6. Z字型变换
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1: return s
+
+        row_list = []
+        for i in range(numRows): row_list.append([])
+        row_pos = 0
+        row_pos_add_or_minus = 1 # 1代表加1，-1代表减1
+        for char in s:
+            row_list[row_pos].append(char)
+            if row_pos == numRows - 1: row_pos_add_or_minus = -1
+            if row_pos == 0: row_pos_add_or_minus = 1
+            row_pos += row_pos_add_or_minus
+
+        res = ''
+        for i in row_list:
+            for j in i:
+                res += j
+        return res
+
 
 
 
@@ -140,5 +160,8 @@ if __name__ == '__main__':
     # res = Solution().lengthOfLongestSubstring('a')
     # print(res)
 
-    res = Solution().longestPalindrome('aba')
+    # res = Solution().longestPalindrome('aba')
+    # print(res)
+
+    res = Solution().convert('PAYPALISHIRING', 3)
     print(res)
