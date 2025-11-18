@@ -114,6 +114,21 @@ class Solution:
         result = result + numbers_list.pop()
         return result
 
+    # 7. 整数反转
+    def reverse(self, x: int) -> int:
+        sign = -1 if x < 0 else 1
+        x = sign * x
+        result = 0
+        while x >= 10:
+            result = result * 10 + x % 10
+            x = x // 10
+        result = result * 10 + x % 10
+        result = sign * result
+        if result > 2 ** 31 - 1 or result < - 2 ** 31:
+            return 0
+        else:
+            return result
+
 
 
 
@@ -121,5 +136,10 @@ class Solution:
 
 if __name__ == "__main__":
     # result = Solution().fractionToDecimal(1, 2147483648)
-    result = Solution().getPermutation(3, 1)
+    # result = Solution().getPermutation(3, 1)
+    # print(result)
+
+    result = Solution().reverse(42)
     print(result)
+
+
