@@ -129,6 +129,42 @@ class Solution:
         else:
             return result
 
+    # 8. 字符串转换整数
+    def myAtoi(self, s: str) -> int:
+        if s.strip() == '': return 0
+        s = s.strip()
+
+        if s[0] not in {'-', '+', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}:
+            return 0
+
+        if s[0] == '-':
+            sign = -1
+            new_s = s[1:]
+        elif s[0] == '+':
+            sign = 1
+            new_s = s[1:]
+        else:
+            sign = 1
+            new_s = s
+        number = 0
+        d = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}
+        for char in new_s:
+            if char not in d:
+                break
+            new_number = number * 10 + d[char]
+            if sign * new_number > 2 ** 31 - 1:
+                return 2 ** 31 - 1
+            elif sign * new_number < - 2 ** 31:
+                return - 2 ** 31
+            else:
+                number = new_number
+
+        return sign * number
+
+
+
+
+
 
 
 
@@ -139,7 +175,10 @@ if __name__ == "__main__":
     # result = Solution().getPermutation(3, 1)
     # print(result)
 
-    result = Solution().reverse(42)
+    # result = Solution().reverse(42)
+    # print(result)
+
+    result = Solution().myAtoi("   -042")
     print(result)
 
 
