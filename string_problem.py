@@ -143,7 +143,17 @@ class Solution:
                 res += j
         return res
 
-
+    # 14. 最长公共前缀
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        lengths = [len(i) for i in strs]
+        result = ''
+        for i in range(min(lengths)):
+            chars = set([s[i] for s in strs])
+            if len(chars) == 1:
+                result += list(chars)[0]
+            else:
+                break
+        return result
 
 
 
@@ -163,5 +173,8 @@ if __name__ == '__main__':
     # res = Solution().longestPalindrome('aba')
     # print(res)
 
-    res = Solution().convert('PAYPALISHIRING', 3)
+    # res = Solution().convert('PAYPALISHIRING', 3)
+    # print(res)
+
+    res = Solution().longestCommonPrefix(["","b"])
     print(res)
