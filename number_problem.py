@@ -1,7 +1,7 @@
 
 from utils import find_factors
 from decimal import Decimal
-
+from typing import List
 
 
 
@@ -162,6 +162,15 @@ class Solution:
         return sign * number
 
 
+    # 9. 回文数
+    def isPalindrome(self, x: int) -> bool:
+        def reverse_string(s):
+            return s[::-1]
+
+        if x < 0: return False
+        x_reverse = reverse_string(str(x))
+        if int(x_reverse) == x: return True
+        else: return False
 
 
 
@@ -178,7 +187,11 @@ if __name__ == "__main__":
     # result = Solution().reverse(42)
     # print(result)
 
-    result = Solution().myAtoi("   -042")
-    print(result)
+    # result = Solution().myAtoi("   -042")
+    # print(result)
+
+    res = Solution().isPalindrome(121)
+    print(res)
+
 
 
