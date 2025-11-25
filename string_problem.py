@@ -155,6 +155,33 @@ class Solution:
                 break
         return result
 
+    # 17. 电话号码的字母组合
+    def letterCombinations(self, digits: str) -> List[str]:
+        digit_to_chars = {
+            '2': ['a', 'b', 'c'],
+            '3': ['d', 'e', 'f'],
+            '4': ['g', 'h', 'i'],
+            '5': ['j', 'k', 'l'],
+            '6': ['m', 'n', 'o'],
+            '7': ['p', 'q', 'r', 's'],
+            '8': ['t', 'u', 'v'],
+            '9': ['w', 'x', 'y', 'z'],
+        }
+        result = []
+        for digit in digits:
+            if len(result) == 0:
+                result = digit_to_chars[digit]
+            else:
+                original_len = len(result)
+                l = len(digit_to_chars[digit])
+                result = result * l
+                result_add = []
+                for i in digit_to_chars[digit]:
+                    result_add += [i] * original_len
+                result = [i + j for i, j in zip(result, result_add)]
+        return result
+
+
 
 
 if __name__ == '__main__':
@@ -176,5 +203,8 @@ if __name__ == '__main__':
     # res = Solution().convert('PAYPALISHIRING', 3)
     # print(res)
 
-    res = Solution().longestCommonPrefix(["","b"])
+    # res = Solution().longestCommonPrefix(["","b"])
+    # print(res)
+
+    res = Solution().letterCombinations('57')
     print(res)
