@@ -78,6 +78,19 @@ class Solution:
         head = head.next
         return head
 
+    # 19. 删除链表的倒数第N个结点
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        if not head.next: return None # 链表只有一个元素的情况
+        p1, p2 = head, head # 使用双指针
+        for i in range(n): # 将第2个指针往后移n
+            p2 = p2.next
+        if not p2: # 如果第2个指针移动n次后到了链表尾部
+            return head.next # 说明要删除的是第1个元素
+        while p2.next: # 把两个指针同时往后移，直至第2个指针到达链表尾
+            p1, p2 = p1.next, p2.next
+        p1.next = p1.next.next # 移除第1个指针的后一个元素
+        return head
+
 
 
 
