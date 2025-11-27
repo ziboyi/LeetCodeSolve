@@ -91,7 +91,22 @@ class Solution:
         p1.next = p1.next.next # 移除第1个指针的后一个元素
         return head
 
-
+    # 21. 合并两个有序链表
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        l1, l2 = [], []
+        while list1:
+            l1.append(list1.val)
+            list1 = list1.next
+        while list2:
+            l2.append(list2.val)
+            list2 = list2.next
+        l = sorted(l1 + l2)
+        head = ListNode(0, None)
+        p = head
+        for i in l:
+            p.next = ListNode(i, None)
+            p = p.next
+        return head.next
 
 
 
