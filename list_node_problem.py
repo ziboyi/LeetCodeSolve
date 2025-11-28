@@ -108,6 +108,24 @@ class Solution:
             p = p.next
         return head.next
 
+    # 24. 两两交换链表中的节点
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        l = []
+        while head:
+            l.append(head.val)
+            head = head.next
+        for idx, i in enumerate(l):
+            if idx % 2 == 1:
+                l[idx], l[idx - 1] = l[idx - 1], l[idx]
+        head = ListNode(0, None)
+        p = head
+        for i in l:
+            p.next = ListNode(i, None)
+            p = p.next
+        return head.next
+
+
+
 
 
 
