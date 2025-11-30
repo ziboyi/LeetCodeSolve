@@ -181,6 +181,39 @@ class Solution:
                 result = [i + j for i, j in zip(result, result_add)]
         return result
 
+    # 22. 括号生成
+    def generateParenthesis(self, n: int) -> List[str]:
+        def is_valid(s: str) -> bool:
+            stack = []
+            try:
+                for char in s:
+                    if char == '(': stack.append('(')
+                    else: stack.pop()
+            except:
+                return False
+            return True
+
+        result = ['(']
+        result_count = [[1, 0]]
+        for _ in range(n * 2 - 1):
+            new_result = []
+            new_result_count = []
+            for idx, i in enumerate(result):
+                count = result_count[idx]
+                if is_valid(i + '(') and count[0] + 1 <= n:
+                    new_result.append(i + '(')
+                    new_result_count.append([count[0] + 1, count[1]])
+                if is_valid(i + ')') and count[1] + 1 <= n:
+                    new_result.append(i + ')')
+                    new_result_count.append([count[0], count[1] + 1])
+            result = new_result
+            result_count = new_result_count
+        return result
+
+    # 28. 找出字符串中第一个匹配项的下标
+    def strStr(self, haystack: str, needle: str) -> int:
+        return haystack.find(needle)
+
 
 
 
@@ -206,5 +239,8 @@ if __name__ == '__main__':
     # res = Solution().longestCommonPrefix(["","b"])
     # print(res)
 
-    res = Solution().letterCombinations('57')
+    # res = Solution().letterCombinations('57')
+    # print(res)
+
+    res = Solution().generateParenthesis(3)
     print(res)
