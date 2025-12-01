@@ -172,26 +172,34 @@ class Solution:
         if int(x_reverse) == x: return True
         else: return False
 
+    # 12. 整数转罗马数字
+    def intToRoman(self, num: int) -> str:
+        num_str = list(str(num))
+        num_str = [''] * (4 - len(num_str)) + num_str
+        roman_num_str = ''
+        d_0 = { # 千位
+            '': '', '0': '', '1': 'M', '2': 'MM',
+            '3': 'MMM', '4': 'M', '5': '', '6': '',
+            '7': '', '8': '', '9': ''
+        }
+        d_1 = { # 百位
+            '': '', '0': '', '1': 'C', '2': 'CC',
+            '3': 'CCC', '4': 'CD', '5': 'D', '6': 'DC',
+            '7': 'DCC', '8': 'DCCC', '9': 'CM'
+        }
+        d_2 = { # 十位
+            '': '', '0': '', '1': 'X', '2': 'XX',
+            '3': 'XXX', '4': 'XL', '5': 'L', '6': 'LX',
+            '7': 'LXX', '8': 'LXXX', '9': 'XC'
+        }
+        d_3 = { # 个位
+            '': '', '0': '', '1': 'I', '2': 'II',
+            '3': 'III', '4': 'IV', '5': 'V', '6': 'VI',
+            '7': 'VII', '8': 'VIII', '9': 'IX'
+        }
+        roman_num_str = d_0[num_str[0]] + d_1[num_str[1]] + d_2[num_str[2]] + d_3[num_str[3]]
+        return roman_num_str
 
-
-
-
-
-
-
-if __name__ == "__main__":
-    # result = Solution().fractionToDecimal(1, 2147483648)
-    # result = Solution().getPermutation(3, 1)
-    # print(result)
-
-    # result = Solution().reverse(42)
-    # print(result)
-
-    # result = Solution().myAtoi("   -042")
-    # print(result)
-
-    res = Solution().isPalindrome(121)
-    print(res)
 
 
 
