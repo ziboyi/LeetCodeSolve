@@ -214,33 +214,34 @@ class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         return haystack.find(needle)
 
+    # 30. 串联所有单词的字串
+    def findSubstring(self, s: str, words: List[str]) -> List[int]:
+        def words_count_dict(words: list) -> dict:
+            d = {}
+            for w in words:
+                d[w] = 1 if w not in d else d[w] + 1
+            return d
 
+        def str_group(string, n):
+            str_list = []
+            for i in range(0, len(string), n):
+                str_list.append(string[i:i+n])
+            return str_list
+
+        d = words_count_dict(words)
+        result = []
+        word_length = len(words[0])
+        l = len(words) * word_length
+        for pos in range(0, len(s) - l + 1):
+            str_list = str_group(s[pos:pos+l], word_length)
+            if words_count_dict(str_list) == d:
+                result.append(pos)
+
+        return result
 
 
 if __name__ == '__main__':
-    # words = ["This", "is", "an", "example", "of", "text", "justification."]
-    # result = Solution().fullJustify(words, maxWidth=16)
-    # for i in result: print(i)
-
-    # result = Solution().minWindow("ADOBECODEBANC", "ABC")
-    # result = Solution().minWindow("a", "a")
-    # result = Solution().minWindow("", "ABC")
-    # print(result)
-
-    # res = Solution().lengthOfLongestSubstring('a')
-    # print(res)
-
-    # res = Solution().longestPalindrome('aba')
-    # print(res)
-
-    # res = Solution().convert('PAYPALISHIRING', 3)
-    # print(res)
-
-    # res = Solution().longestCommonPrefix(["","b"])
-    # print(res)
-
-    # res = Solution().letterCombinations('57')
-    # print(res)
-
-    res = Solution().generateParenthesis(3)
+    res = Solution().findSubstring("wordgoodgoodgoodbestword", ["word","good","best","word"])
+    print(res)
+    res = Solution().findSubstring("wordgoodgoodgoodbestword", ["w","o","r","d"])
     print(res)
